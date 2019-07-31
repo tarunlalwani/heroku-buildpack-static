@@ -25,6 +25,7 @@ class NginxConfig
     json["worker_connections"] ||= ENV["WORKER_CONNECTIONS"] || DEFAULT[:worker_connections]
     json["port"] ||= ENV["PORT"] || 5000
     json["root"] ||= DEFAULT[:root]
+    json["root"] = NginxConfigUtil.interpolate(json["root"], ENV) if json["root"]
     json["encoding"] ||= DEFAULT[:encoding]
 
     json["canonical_host"] ||= DEFAULT[:canonical_host]
